@@ -1,0 +1,6 @@
+user_data.toml
+data/
+logs/
+__pycache__/
+.idea/
+.venv/

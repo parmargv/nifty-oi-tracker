@@ -1,0 +1,6 @@
+streamlit>=1.47
+plotly>=5.20
+pandas>=2.0
+pytz
+toml; python_version < "3.11"
+fyers-apiv3>=3.1
