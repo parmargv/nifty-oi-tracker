@@ -16,7 +16,7 @@ Minute-by-minute NIFTY option-chain OI, saved to disk so the charts always show 
 
 ```bash
 pip install -r requirements.txt
-cp /path/to/user_data.toml .        # same format you already use
+cp user_data.example.toml user_data.toml   # then fill in your Fyers details
 streamlit run app.py --server.address 0.0.0.0 --server.port 8501
 ```
 

@@ -1,0 +1,11 @@
+# Copy this file to user_data.toml and fill in your own values.
+# user_data.toml is listed in .gitignore, so it never gets pushed.
+[your_profile]
+user = "your_app_username"
+account = "ACCOUNT NAME"
+password = "change-me"
+app_id = "XXXXXXXXXX-100"
+secret_key = "your-fyers-secret-key"
+redirect_uri = "https://trade.fyers.in/api-login/redirect-uri/index.html"
+response_type = "code"
+state = "sample_state"

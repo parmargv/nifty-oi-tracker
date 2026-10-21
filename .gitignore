@@ -2,5 +2,9 @@ user_data.toml
 data/
 logs/
 __pycache__/
+*.tmp
+token.txt
+.env
+.streamlit/secrets.toml
 .idea/
 .venv/
