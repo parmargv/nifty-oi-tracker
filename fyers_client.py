@@ -26,10 +26,26 @@ class AuthError(RuntimeError):
 
 
 # ------------------------------------------------------------ credentials
+def _profiles_from_streamlit_secrets() -> dict:
+    """Profiles pasted into Streamlit Cloud's Settings -> Secrets (same TOML format as user_data.toml)."""
+    try:
+        import streamlit as st
+        return {k: dict(v) for k, v in st.secrets.items() if hasattr(v, "keys") and "app_id" in v}
+    except Exception:  # not running under Streamlit, or no secrets configured
+        return {}
+
+
 def load_profiles() -> dict:
-    if not os.path.exists(config.USER_DATA_FILE):
-        raise FileNotFoundError(f"Credentials file not found: {config.USER_DATA_FILE}")
-    return _load_toml(config.USER_DATA_FILE)
+    # 1) local file (your Mac / own server)  2) Streamlit secrets (Streamlit Community Cloud)
+    if os.path.exists(config.USER_DATA_FILE):
+        return _load_toml(config.USER_DATA_FILE)
+    profiles = _profiles_from_streamlit_secrets()
+    if profiles:
+        return profiles
+    raise FileNotFoundError(
+        f"No credentials found. Put user_data.toml at {config.USER_DATA_FILE}, "
+        "or on Streamlit Cloud paste its contents into the app's Settings -> Secrets."
+    )
 
 
 def get_profile(name: str) -> dict:
